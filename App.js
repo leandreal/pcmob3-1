@@ -5,7 +5,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import BlockRGB from "./components/BlockRGB";
 
 
-
 function HomeScreen() {
   const [colorArray, setColorArray] = useState([
     { red: 255, green: 0, blue: 0, id: "0" },
@@ -18,6 +17,7 @@ function renderItem ({item}) {
     return <BlockRGB red={item.red} green={item.green} blue={item.blue} />;
   }
 
+
 function addColor() {
     setColorArray([
       ...colorArray,
@@ -29,15 +29,29 @@ function addColor() {
       },
     ]);
   }
+
+
+function resetColor() {
+    setColorArray([]);
+  }
  
   return (
     <View style={styles.container}>
+      
       <TouchableOpacity
-        style={{ height: 40, justifyContent: "center" }}
+        style={styles.addButton}
         onPress={addColor}
         >
 
-        <Text style={{ color: "red" }}>Add colour</Text>
+        <Text style={{ color: "blue" }}>Add colour</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.resetButton}
+        onPress={resetColor}
+        >
+
+        <Text style={{ color: "green" }}>Reset colour</Text>
       </TouchableOpacity>
 
 
@@ -57,7 +71,7 @@ export default function App() {
  return (
    <NavigationContainer>
      <Stack.Navigator>
-       <Stack.Screen name="Home" component={HomeScreen} />
+       <Stack.Screen name="COLOUR LIST" component={HomeScreen} />
      </Stack.Navigator>
    </NavigationContainer>
  );
@@ -70,5 +84,34 @@ const styles = StyleSheet.create({
    alignItems: "center",
    justifyContent: "center",
  },
+
+ addButton: {
+ 
+  height: 50,
+  width: "50%",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: 5,
+  margin: 12,
+  borderRadius: 5,
+  justifyContent: "center", 
+  backgroundColor: "azure", 
+  borderWidth: "3", 
+},
+
+resetButton: {
+  
+  height: 50,
+  width: "50%",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: 5,
+  margin: 12,
+  borderRadius: 5,
+  justifyContent: "center", 
+  backgroundColor: "azure", 
+  borderWidth: "3", 
+},
+
 });
 
